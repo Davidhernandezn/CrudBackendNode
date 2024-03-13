@@ -11,10 +11,15 @@ class IndexRoutes {
     }
 
     config(): void {
-        //RUTA INCIAL 
-    this.router.get('/', indexController.index);
-       //this.router.get('/',(req, res) => res.send('Hola!!!'))
+        //RUTAS  
+        this.router.get('/', indexController.list);
+        this.router.post('/registrar', indexController.create);
+        this.router.put('/actualizar/:id', indexController.update);
+        this.router.delete('/eliminar/:id', indexController.delete);
 
+          //this.router.post('/', indexController.index);
+           //this.router.get('/',(req, res) => res.send('Hola!!!'))
+           //this.router.get('/:id', indexController.getOne);
     }
 
 }

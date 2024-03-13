@@ -3,15 +3,34 @@ import pool from '../database.js';
 
 class IndexController {
 
-    public async index(req: Request, res: Response) {
-        try {
-            const result = await (await pool).query('DESCRIBE datos_personales');
-            res.json(result); // Enviar resultados de la consulta como respuesta JSON
-        } catch (error) {
-            console.error('Error al ejecutar la consulta:', error);
-            res.status(500).json({ error: 'Ocurrió un error al procesar la solicitud' }); // Manejar errores y enviar respuesta de error al cliente
-        }
+    //public index(req: Request, res: Response) {
+      //  res.json({text: 'API is in /api/empleados'});
+    //}
+
+    public async list(req: Request, res: Response): Promise<void> {
+        const personas = await (await pool).query('SELECT * FROM datos_personales');
+        res.json(personas);
     }
+
+    public async create(req: Request, res: Response): Promise<void> {
+        const result = await (await pool).query('INSERT INTO datos_personales set ?', [req.body]);
+        res.json({ message: 'dato guardado' });
+    }
+
+    public async update(req: Request, res: Response): Promise<void> {
+        const { id } = req.params;
+        const oldGame = req.body;
+        await (await pool).query('UPDATE datos_personales set ? WHERE id = ?', [req.body, id]);
+        res.json({ message: "Dato actualizado" });
+    }
+
+    public async delete(req: Request, res: Response): Promise<void> {
+        const { id } = req.params;
+        await (await pool).query('DELETE FROM datos_personales WHERE id = ?', [id]);
+        res.json({ message: "Dato eliminado" });
+    }
+
+
 }
 
-export const indexController = new IndexController();
+export const indexController = new IndexController;

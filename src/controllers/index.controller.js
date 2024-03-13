@@ -15,17 +15,35 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.indexController = void 0;
 const database_js_1 = __importDefault(require("../database.js"));
 class IndexController {
-    index(req, res) {
+    //public index(req: Request, res: Response) {
+    //  res.json({text: 'API is in /api/empleados'});
+    //}
+    list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const result = yield (yield database_js_1.default).query('DESCRIBE datos_personales');
-                res.json(result); // Enviar resultados de la consulta como respuesta JSON
-            }
-            catch (error) {
-                console.error('Error al ejecutar la consulta:', error);
-                res.status(500).json({ error: 'Ocurrió un error al procesar la solicitud' }); // Manejar errores y enviar respuesta de error al cliente
-            }
+            const personas = yield (yield database_js_1.default).query('SELECT * FROM datos_personales');
+            res.json(personas);
+        });
+    }
+    create(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield (yield database_js_1.default).query('INSERT INTO datos_personales set ?', [req.body]);
+            res.json({ message: 'dato guardado' });
+        });
+    }
+    update(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            const oldGame = req.body;
+            yield (yield database_js_1.default).query('UPDATE datos_personales set ? WHERE id = ?', [req.body, id]);
+            res.json({ message: "Dato actualizado" });
+        });
+    }
+    delete(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { id } = req.params;
+            yield (yield database_js_1.default).query('DELETE FROM datos_personales WHERE id = ?', [id]);
+            res.json({ message: "Dato eliminado" });
         });
     }
 }
-exports.indexController = new IndexController();
+exports.indexController = new IndexController;

@@ -18,7 +18,7 @@ class Server {
         this.app.set('port', process.env.PORT || 3000); //CONECTARSE AL PUERTO O TOMAR 3000
         this.app.use((0, morgan_1.default)('dev'));
         this.app.use((0, cors_1.default)());
-        this.app.use(express_1.default.json());
+        this.app.use(express_1.default.json()); //midleware
         this.app.use(express_1.default.urlencoded({ extended: false })); //formulario html
     }
     routes() {

@@ -9,9 +9,14 @@ class IndexRoutes {
         this.config();
     }
     config() {
-        //RUTA INCIAL 
-        this.router.get('/', index_controller_1.indexController.index);
+        //RUTAS  
+        this.router.get('/', index_controller_1.indexController.list);
+        this.router.post('/registrar', index_controller_1.indexController.create);
+        this.router.put('/actualizar/:id', index_controller_1.indexController.update);
+        this.router.delete('/eliminar/:id', index_controller_1.indexController.delete);
+        //this.router.post('/', indexController.index);
         //this.router.get('/',(req, res) => res.send('Hola!!!'))
+        //this.router.get('/:id', indexController.getOne);
     }
 }
 const indexRoutes = new IndexRoutes();
