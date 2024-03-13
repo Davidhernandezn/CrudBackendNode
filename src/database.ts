@@ -8,9 +8,9 @@ async function initializeDatabase() {
     try {
         // Obtener una conexión del pool
         const connection = await (await pool).getConnection();
-        console.log('DB is Connected');
+        console.log('Conexión Exitosa');
         connection.release();
-    } catch (error) {
+    } catch (error) { 
         console.error('--Error al conectar a la base de datos:', error);
     }
 }

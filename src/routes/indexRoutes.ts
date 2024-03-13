@@ -16,10 +16,7 @@ class IndexRoutes {
         this.router.post('/registrar', indexController.create);
         this.router.put('/actualizar/:id', indexController.update);
         this.router.delete('/eliminar/:id', indexController.delete);
-
-          //this.router.post('/', indexController.index);
-           //this.router.get('/',(req, res) => res.send('Hola!!!'))
-           //this.router.get('/:id', indexController.getOne);
+        //this.router.get('/',(req, res) => res.send('Hola!!!'))
     }
 
 }

@@ -44,7 +44,7 @@ function initializeDatabase() {
         try {
             // Obtener una conexión del pool
             const connection = yield (yield pool).getConnection();
-            console.log('DB is Connected');
+            console.log('Conexión Exitosa');
             connection.release();
         }
         catch (error) {

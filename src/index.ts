@@ -3,11 +3,14 @@ import indexRoutes from './routes/indexRoutes';
 import morgan from 'morgan';
 import cors from 'cors';
 
+
+
+//configurar el servidor
 class Server{
 
     public app:Application;
 
-    constructor(){
+    constructor(){//inicializa
          this.app = express();
          this.config();
          this.routes();

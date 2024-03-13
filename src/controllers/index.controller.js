@@ -15,9 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.indexController = void 0;
 const database_js_1 = __importDefault(require("../database.js"));
 class IndexController {
-    //public index(req: Request, res: Response) {
-    //  res.json({text: 'API is in /api/empleados'});
-    //}
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const personas = yield (yield database_js_1.default).query('SELECT * FROM datos_personales');

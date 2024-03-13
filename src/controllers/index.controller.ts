@@ -3,10 +3,6 @@ import pool from '../database.js';
 
 class IndexController {
 
-    //public index(req: Request, res: Response) {
-      //  res.json({text: 'API is in /api/empleados'});
-    //}
-
     public async list(req: Request, res: Response): Promise<void> {
         const personas = await (await pool).query('SELECT * FROM datos_personales');
         res.json(personas);
