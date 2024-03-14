@@ -30,7 +30,7 @@ class IndexController {
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const oldGame = req.body;
+            const oldData = req.body;
             yield (yield database_js_1.default).query('UPDATE datos_personales set ? WHERE id = ?', [req.body, id]);
             res.json({ message: "Dato actualizado" });
         });

@@ -15,7 +15,7 @@ class IndexController {
 
     public async update(req: Request, res: Response): Promise<void> {
         const { id } = req.params;
-        const oldGame = req.body;
+        const oldData= req.body;
         await (await pool).query('UPDATE datos_personales set ? WHERE id = ?', [req.body, id]);
         res.json({ message: "Dato actualizado" });
     }
